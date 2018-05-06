@@ -5,37 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".app.GameActivity"
+    android:orientation="vertical"
     android:background="@color/beje"
     >
 
+
+    <RelativeLayout
+        android:id="@+id/relativeForcaImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp">
+
+
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/download" />
+        android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"
+        android:src="@drawable/forca_main" />
 
     <RelativeLayout
         android:id="@+id/relativeForca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="100dp"
+        android:layout_centerHorizontal="true">
 
         <ImageView
             android:id="@+id/headImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="2dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="2dp"
             android:src="@drawable/head_alive" />
 
         <ImageView
             android:id="@+id/body"
             android:layout_width="62dp"
             android:layout_height="90dp"
-            android:layout_marginTop="53dp"
             android:layout_marginLeft="109dp"
+            android:layout_marginTop="53dp"
             android:elevation="10dp"
             android:src="@drawable/body" />
 
@@ -43,24 +60,24 @@
             android:id="@+id/leftArm"
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:layout_marginTop="59dp"
             android:layout_marginLeft="161dp"
+            android:layout_marginTop="59dp"
             android:src="@drawable/arm_left" />
 
         <ImageView
             android:id="@+id/rigthArm"
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:layout_marginTop="59dp"
             android:layout_marginLeft="78dp"
+            android:layout_marginTop="59dp"
             android:src="@drawable/arm_right" />
 
         <ImageView
             android:id="@+id/rigthLeg"
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:layout_marginTop="110dp"
             android:layout_marginLeft="100dp"
+            android:layout_marginTop="110dp"
             android:elevation="4dp"
             android:src="@drawable/leg_right" />
 
@@ -68,83 +85,28 @@
             android:id="@+id/leftLeg"
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:layout_marginTop="110dp"
             android:layout_marginLeft="140dp"
+            android:layout_marginTop="110dp"
             android:elevation="2dp"
             android:src="@drawable/leg_left" />
+
         <ImageView
             android:id="@+id/rigthFoot"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_marginTop="158dp"
             android:layout_marginLeft="100dp"
-            android:src="@drawable/foot_right"/>
+            android:layout_marginTop="158dp"
+            android:src="@drawable/foot_right" />
+
         <ImageView
             android:id="@+id/leftFoot"
             android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_marginTop="158dp"
             android:layout_marginLeft="156dp"
-            android:src="@drawable/foot_left"/>
+            android:layout_marginTop="158dp"
+            android:src="@drawable/foot_left" />
     </RelativeLayout>
-
-    <EditText
-        android:editable="false"
-        android:id="@+id/wordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/relativeForca"
-        android:ems="10"
-        android:inputType="textMultiLine" />
-
-    <EditText
-        android:layout_marginTop="30dp"
-        android:id="@+id/attemptLetter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/wordText"
-        android:ems="5"
-        android:inputType="text"
-        android:digits="abcdefghijklmnopqrstuvxwyz"
-        />
-
-    <Button
-        android:id="@+id/attemptLetterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/attemptLetter"
-        android:layout_toEndOf="@+id/attemptLetter"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/button_layout"
-        android:text="@string/tentar" />
-
-    <EditText
-        android:layout_marginTop="30dp"
-        android:id="@+id/attemptText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/attemptLetter"
-        android:ems="10"/>
-
-    <Button
-        android:id="@+id/tryWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/attemptText"
-        android:layout_toEndOf="@+id/attemptText"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/button_layout"
-        android:text="@string/j_sei" />
-    <Button
-        android:id="@+id/exit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_layout"
-        android:layout_below="@id/tryWord"
-        android:text="@string/sair"/>
-
-
+    </RelativeLayout>
 
 
 </RelativeLayout>
