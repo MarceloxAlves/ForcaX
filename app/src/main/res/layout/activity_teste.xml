@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/beje"
-    tools:context="br.com.avantigames.forcax.app.MainActivity">
+    tools:context=".app.TesteActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,18 +30,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/iniciar_btn"
             android:layout_width="wrap_content"
             android:layout_marginLeft="90dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_layout"
             android:text="Iniciar"/>
 
         <Button
-            android:id="@+id/recordes_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_layout"
             android:layout_marginLeft="30dp"
             android:text="Recordes"/>
 
@@ -55,21 +51,18 @@
         >
 
         <Button
-            android:id="@+id/sobre_btn"
             android:layout_width="wrap_content"
             android:layout_marginLeft="90dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_layout"
             android:text="Sobre"/>
 
         <Button
-            android:id="@+id/sair_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_layout"
             android:layout_marginLeft="30dp"
             android:text="Sair"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

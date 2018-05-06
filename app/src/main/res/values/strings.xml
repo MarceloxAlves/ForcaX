@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ForcaX</string>
     <string name="jogo_da_forca">Jogo Da Forca</string>
+    <string name="tentar">tentar</string>
+    <string name="j_sei">Já sei</string>
+    <string name="sair">Sair</string>
 </resources>
