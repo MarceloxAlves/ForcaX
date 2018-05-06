@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".app.ForcaActivity" />
         <activity android:name=".app.ScoreActivity" />
-        <activity android:name=".app.TesteActivity"></activity>
+        <activity android:name=".app.GameActivity"></activity>
     </application>
 
 </manifest>
