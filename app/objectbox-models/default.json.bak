@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:2913126174215544143",
-      "lastPropertyId": "2:2805124869264361173",
+      "lastPropertyId": "3:879656312148853996",
       "name": "PalavraFrase",
       "properties": [
         {
@@ -15,12 +15,32 @@
         {
           "id": "2:2805124869264361173",
           "name": "descricao"
+        },
+        {
+          "id": "3:879656312148853996",
+          "name": "tipoTexto"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:9209463243729916531",
+      "lastPropertyId": "2:7106853308121828428",
+      "name": "Tema",
+      "properties": [
+        {
+          "id": "1:460556762503895240",
+          "name": "id"
+        },
+        {
+          "id": "2:7106853308121828428",
+          "name": "descricao"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:2913126174215544143",
+  "lastEntityId": "2:9209463243729916531",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
