@@ -1,6 +1,12 @@
 package br.com.avantigames.forcax.model;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+
+@Entity
 public class Jogador {
+
+    @Id
     public long id;
     private String nome;
     private int score;
@@ -9,15 +15,26 @@ public class Jogador {
         this.nome = nome;
     }
 
+    public Jogador() {
+    }
+
     public void pontuar(){
         //ToDo
     }
 
-    public long getId() {
-        return id;
+    public String getNome() {
+        return nome;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

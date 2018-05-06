@@ -47,9 +47,29 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "3:4237661006325670721",
+      "lastPropertyId": "3:4707512811360582240",
+      "name": "Jogador",
+      "properties": [
+        {
+          "id": "1:4848058883721024475",
+          "name": "id"
+        },
+        {
+          "id": "2:8621903659481480260",
+          "name": "nome"
+        },
+        {
+          "id": "3:4707512811360582240",
+          "name": "score"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "2:9209463243729916531",
+  "lastEntityId": "3:4237661006325670721",
   "lastIndexId": "1:7837332699506194966",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
