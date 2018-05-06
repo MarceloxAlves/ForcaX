@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.ForcaActivity" />
-        <activity android:name=".app.ScoreActivity"></activity>
+        <activity android:name=".app.ScoreActivity" />
+        <activity android:name=".app.TesteActivity"></activity>
     </application>
 
 </manifest>
