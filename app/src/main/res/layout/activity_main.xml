@@ -35,7 +35,7 @@
             android:layout_marginLeft="90dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_layout"
-            android:text="Iniciar"/>
+            android:text="@string/iniciar"/>
 
         <Button
             android:id="@+id/recordes_btn"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_layout"
             android:layout_marginLeft="30dp"
-            android:text="Recordes"/>
+            android:text="@string/recordes"/>
 
     </LinearLayout>
 
@@ -60,7 +60,7 @@
             android:layout_marginLeft="90dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_layout"
-            android:text="Sobre"/>
+            android:text="@string/sobre"/>
 
         <Button
             android:id="@+id/sair_btn"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_layout"
             android:layout_marginLeft="30dp"
-            android:text="Sair"/>
+            android:text="@string/sair"/>
 
     </LinearLayout>
 
