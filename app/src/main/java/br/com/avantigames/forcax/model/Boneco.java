@@ -19,6 +19,10 @@ public class Boneco {
     }
 
     public void setErro(){
-        --this.bonecoHP;
+        this.bonecoHP--;
+    }
+
+    public int getBonecoHP(){
+        return this.bonecoHP;
     }
 }

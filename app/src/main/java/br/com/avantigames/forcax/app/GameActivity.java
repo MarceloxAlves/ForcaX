@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,13 +73,20 @@ public class GameActivity extends AppCompatActivity {
             view.setBackground(getDrawable(R.drawable.btn_erro));
             this.palavrasLayout.setVisibility(View.INVISIBLE);
             this.relativeForcaImg.setVisibility(View.VISIBLE);
+            Animation animFadeIn = AnimationUtils.loadAnimation(this, R.anim.fad_in);
+
+            partesBoneco.get(7-boneco.getBonecoHP()).setVisibility(View.VISIBLE);
+            animFadeIn.reset();
+            partesBoneco.get(7-boneco.getBonecoHP()).clearAnimation();
+            partesBoneco.get(7-boneco.getBonecoHP()).startAnimation(animFadeIn);
+
             new android.os.Handler().postDelayed(
                     () -> {
                         teclado.setEnabled(true);
                         this.palavrasLayout.setVisibility(View.VISIBLE);
                         this.relativeForcaImg.setVisibility(View.INVISIBLE);
 
-                    }, 2000);
+                    }, 3000);
 
         }
 
@@ -155,15 +164,15 @@ public class GameActivity extends AppCompatActivity {
         palavrasLayout = findViewById(R.id.palavras);
         relativeForcaImg = findViewById(R.id.relativeForcaImg);
         teclado = findViewById(R.id.teclado);
-
+        partesBoneco = new ArrayList<>();
         partesBoneco.add(findViewById(R.id.headImage));
         partesBoneco.add(findViewById(R.id.body));
         partesBoneco.add(findViewById(R.id.leftArm));
         partesBoneco.add(findViewById(R.id.rigthArm));
-        partesBoneco.add(findViewById(R.id.leftFoot));
-        partesBoneco.add(findViewById(R.id.rigthFoot));
         partesBoneco.add(findViewById(R.id.leftLeg));
         partesBoneco.add(findViewById(R.id.rigthLeg));
+        partesBoneco.add(findViewById(R.id.leftFoot));
+        partesBoneco.add(findViewById(R.id.rigthFoot));
         boneco = new Boneco();
     }
 }
