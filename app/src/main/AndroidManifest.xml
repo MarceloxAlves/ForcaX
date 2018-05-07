@@ -21,7 +21,8 @@
         <activity android:name=".app.ScoreActivity" />
         <activity android:name=".app.GameActivity" />
         <activity android:name=".app.MainActivity" />
-        <activity android:name=".app.FormularioActivity"></activity>
+        <activity android:name=".app.FormularioActivity" />
+        <activity android:name=".app.AdicionarTemaActivity"></activity>
     </application>
 
 </manifest>

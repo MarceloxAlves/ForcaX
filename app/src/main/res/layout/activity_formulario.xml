@@ -15,12 +15,13 @@
         android:orientation="horizontal"
         android:layout_margin="10dp">
         <RadioButton
-            android:id="@+id/palvras_btn"
+            android:id="@+id/palvra_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:fontFamily="serif"
+            android:checked="true"
             android:text="@string/palavra"/>
         <RadioButton
             android:id="@+id/frase_btn"
@@ -56,9 +57,11 @@
             android:layout_weight="4">
         </Spinner>
         <Button
+            android:id="@+id/adiciona_tema"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="adicinarTema"
             android:background="@drawable/button_layout"
             android:text="@string/plus"/>
 
@@ -83,6 +86,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/button_layout"
         android:layout_gravity="end"
+        android:onClick="salvar"
         android:text="@string/salvar" />
 
 
