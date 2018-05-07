@@ -21,7 +21,7 @@ public class PalavraFrase {
     private ToOne<Tema> temaToOne;
     private String dica;
 
-    private PalavraFrase() {
+    public PalavraFrase() {
 
     }
 

@@ -8,4 +8,12 @@
     <string name="recordes">Recordes</string>
     <string name="iniciar">Iniciar</string>
     <string name="nome">Nome</string>
+    <string name="palavra">Palavra</string>
+    <string name="frase">Frase</string>
+    <string name="tema">Tema</string>
+    <string name="dica">Dica</string>
+    <string name="salvar">Salvar</string>
+    <string name="plus">+</string>
+    <string name="config">Config</string>
+    <string name="tema">Tema</string>
 </resources>
