@@ -51,4 +51,9 @@ public class MainActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
+
+    public void adiciornarFrase(View view) {
+        startActivity(new Intent(this,FormularioActivity.class));
+        finish();
+    }
 }
