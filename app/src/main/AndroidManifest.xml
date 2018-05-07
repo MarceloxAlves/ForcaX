@@ -18,8 +18,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.ForcaActivity" />
-        <activity android:name=".app.ScoreActivity" />
-        <activity android:name=".app.GameActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".app.ScoreActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".app.GameActivity" >
+        </activity>
         <activity android:name=".app.MainActivity"></activity>
     </application>
 

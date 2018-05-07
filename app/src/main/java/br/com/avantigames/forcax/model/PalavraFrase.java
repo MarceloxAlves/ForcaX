@@ -25,10 +25,10 @@ public class PalavraFrase {
 
     }
 
-    public PalavraFrase(String descricao, int tipoTexto, ToOne<Tema> temaToOne, String dica) {
+    public PalavraFrase(String descricao, int tipoTexto, String dica) {
         this.descricao = descricao;
         this.tipoTexto = tipoTexto;
-        this.temaToOne = temaToOne;
+        //this.temaToOne = temaToOne;
         this.dica = dica;
     }
 
@@ -66,6 +66,7 @@ public class PalavraFrase {
 
     public List<Integer> adivinhar(char letra){
         List<Integer> posicoes = new ArrayList<>();
+         this.descricao.replace(" ","");
             for (int i = 0; i < this.descricao.length() ; i++) {
                 if(descricao.charAt(i) == letra){
                     posicoes.add(i);

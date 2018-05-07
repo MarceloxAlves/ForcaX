@@ -1,9 +1,11 @@
 package br.com.avantigames.forcax.app;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,24 +17,25 @@ import java.util.Random;
 
 import br.com.avantigames.forcax.R;
 import br.com.avantigames.forcax.infra.App;
+import br.com.avantigames.forcax.model.Boneco;
 import br.com.avantigames.forcax.model.Jogador;
 import br.com.avantigames.forcax.model.PalavraFrase;
 import br.com.avantigames.forcax.model.Rodada;
+import br.com.avantigames.forcax.model.Tema;
+import br.com.avantigames.forcax.model.Tema_;
+import br.com.avantigames.forcax.model.TipoTexto;
 import io.objectbox.Box;
+import io.objectbox.relation.ToOne;
 
 public class GameActivity extends AppCompatActivity {
 
     LinearLayout palavrasLayout;
+    LinearLayout teclado;
     RelativeLayout relativeForcaImg;
-    ImageView head;
-    ImageView body;
-    ImageView leftArm;
-    ImageView rigthArm;
-    ImageView rigthLeg;
-    ImageView leftLeg;
-    ImageView rigthFoot;
-    ImageView leftFoot;
-    List<TextView> textViewList;
+    List<ImageView> partesBoneco;
+    List<List<TextView>> textViewList;
+    List<PalavraFrase> palavras = new ArrayList<>();
+    private Boneco boneco;
 
     Box<PalavraFrase> palavraFraseBox;
 
@@ -48,9 +51,36 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-
-
     public void onAdivinhar(View view) {
+        teclado.setEnabled(false);
+        char letra = ((Button) view).getText().charAt(0);
+        boolean acertou =  false;
+        for (int i = 0; i < palavras.size(); i++) {
+            List<Integer> adivinhar = palavras.get(i).adivinhar(letra);
+            if (adivinhar.size() > 0){
+                for (Integer a: adivinhar){
+                      textViewList.get(i).get(a).setText(String.valueOf(letra));
+                    acertou = true;
+                }
+            }
+        }
+        if (acertou){
+            view.setBackground(getDrawable(R.drawable.btn_acerto));
+        }else{
+            boneco.setErro();
+            view.setBackground(getDrawable(R.drawable.btn_erro));
+            this.palavrasLayout.setVisibility(View.INVISIBLE);
+            this.relativeForcaImg.setVisibility(View.VISIBLE);
+            new android.os.Handler().postDelayed(
+                    () -> {
+                        teclado.setEnabled(true);
+                        this.palavrasLayout.setVisibility(View.VISIBLE);
+                        this.relativeForcaImg.setVisibility(View.INVISIBLE);
+
+                    }, 2000);
+
+        }
+
 
     }
 
@@ -64,55 +94,76 @@ public class GameActivity extends AppCompatActivity {
     private void iniciarGame() {
         ocultarBoneco();
         Rodada rodada = new Rodada();
-        montarPalavras(rodada.iniciarRodada(palavraFraseBox));
+        PalavraFrase palavraFrase = new PalavraFrase("RAMBO",1, "Filme do Rambo" );
+        palavras.add(palavraFrase);
+        PalavraFrase palavraFrase2 = new PalavraFrase("GODZILLA",1, "Filme do Rambo" );
+        palavras.add(palavraFrase2);
+
+        montarPalavras(palavras);
     }
 
-    private void montarPalavras(List<String> palavras) {
-        for (int a = 0; a < palavras.size(); a++) {
-            LinearLayout linearLayout = new LinearLayout(this);
-            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.gravity =  Gravity.CENTER;
-            linearLayout.setLayoutParams(layoutParams);
-            linearLayout.setPadding(10,0,10,0);
+    private void montarPalavras(List<PalavraFrase> palavras) {
 
-            for (int i = 0; i < palavras.get(a).length(); i++) {
-                TextView textView = new TextView(this);
-                LinearLayout.LayoutParams layoutParamsText = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layoutParamsText.setMargins(0, 0, 10, 0);
-                textView.setLayoutParams(layoutParamsText);
-                textView.setText("_");
-                textView.setTextSize(50);
+        for (int a = 0; a < palavras.size(); a++) {
+            LinearLayout linearLayout = getLinearLayout();
+            List<TextView> textViews = new ArrayList<>();
+
+
+            for (int i = 0; i < palavras.get(a).getDescricao().length(); i++) {
+                if (palavras.get(a).getDescricao().charAt(i) ==  ' '){
+                    palavrasLayout.addView(linearLayout);
+                    linearLayout = getLinearLayout();
+                };
+                TextView textView = getTextViewLetra();
                 linearLayout.addView(textView);
-                textViewList.add(textView);
+                textViews.add(textView);
             }
+
+            textViewList.add(textViews);
             palavrasLayout.addView(linearLayout);
         }
     }
 
-    private void ocultarBoneco(){
-        head.setVisibility(View.INVISIBLE);
-        body.setVisibility(View.INVISIBLE);
-        leftArm.setVisibility(View.INVISIBLE);
-        rigthArm.setVisibility(View.INVISIBLE);
-        leftFoot.setVisibility(View.INVISIBLE);
-        rigthFoot.setVisibility(View.INVISIBLE);
-        leftLeg.setVisibility(View.INVISIBLE);
-        rigthLeg.setVisibility(View.INVISIBLE);
+    private TextView getTextViewLetra() {
+        TextView textView = new TextView(this);
+        LinearLayout.LayoutParams layoutParamsText = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParamsText.setMargins(0, 0, 10, 0);
+        textView.setLayoutParams(layoutParamsText);
+        textView.setText("_");
+        textView.setTextSize(50);
+        return textView;
     }
 
+    private LinearLayout getLinearLayout() {
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity =  Gravity.CENTER;
+        linearLayout.setLayoutParams(layoutParams);
+        linearLayout.setPadding(10,0,10,0);
+        return linearLayout;
+    }
+
+    private void ocultarBoneco(){
+        for (ImageView parte: partesBoneco) {
+            parte.setVisibility(View.INVISIBLE);
+        }
+
+    }
 
     private void initialize() {
         palavrasLayout = findViewById(R.id.palavras);
         relativeForcaImg = findViewById(R.id.relativeForcaImg);
+        teclado = findViewById(R.id.teclado);
 
-        head        = findViewById(R.id.headImage);
-        body        = findViewById(R.id.body);
-        leftArm     = findViewById(R.id.leftArm);
-        rigthArm    = findViewById(R.id.rigthArm);
-        leftFoot    = findViewById(R.id.leftFoot);
-        rigthFoot   = findViewById(R.id.rigthFoot);
-        leftLeg     = findViewById(R.id.leftLeg);
-        rigthLeg    = findViewById(R.id.rigthLeg);
+        partesBoneco.add(findViewById(R.id.headImage));
+        partesBoneco.add(findViewById(R.id.body));
+        partesBoneco.add(findViewById(R.id.leftArm));
+        partesBoneco.add(findViewById(R.id.rigthArm));
+        partesBoneco.add(findViewById(R.id.leftFoot));
+        partesBoneco.add(findViewById(R.id.rigthFoot));
+        partesBoneco.add(findViewById(R.id.leftLeg));
+        partesBoneco.add(findViewById(R.id.rigthLeg));
+        boneco = new Boneco();
     }
 }

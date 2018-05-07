@@ -4,14 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Boneco {
-    private List<Integer> parte = new ArrayList<>();
-    private int progresso;
+    private int bonecoHP;
 
-    public boolean isDead(List<String> erros){
-        if(parte.size() >= erros.size()){
+    public Boneco() {
+        this.bonecoHP = 8;
+    }
+
+    public boolean isDead(){
+        if(bonecoHP == 0){
             return true;
         }else {
             return false;
         }
+    }
+
+    public void setErro(){
+        --this.bonecoHP;
     }
 }
