@@ -56,4 +56,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,FormularioActivity.class));
         finish();
     }
+
+    public void mostrarSobre(View view) {
+        startActivity(new Intent(this,AboutActivity.class));
+    }
 }
