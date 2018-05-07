@@ -18,9 +18,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.ForcaActivity" />
-        <activity android:name=".app.ScoreActivity" />
-        <activity android:name=".app.GameActivity" />
-        <activity android:name=".app.MainActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".app.ScoreActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".app.GameActivity" >
+        </activity>
+        <activity android:name=".app.MainActivity"></activity>
         <activity android:name=".app.FormularioActivity" />
         <activity android:name=".app.AdicionarTemaActivity"></activity>
     </application>
