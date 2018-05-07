@@ -1,5 +1,6 @@
 package br.com.avantigames.forcax.app;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,7 +55,8 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void onAdivinhar(View view) {
-        teclado.setEnabled(false);
+        view.setEnabled(false);
+
         char letra = ((Button) view).getText().charAt(0);
         boolean acertou =  false;
         for (int i = 0; i < palavras.size(); i++) {
@@ -69,32 +71,50 @@ public class GameActivity extends AppCompatActivity {
         if (acertou){
             view.setBackground(getDrawable(R.drawable.btn_acerto));
         }else{
-            boneco.setErro();
+            teclado.setVisibility(View.INVISIBLE);
             view.setBackground(getDrawable(R.drawable.btn_erro));
-            this.palavrasLayout.setVisibility(View.INVISIBLE);
-            this.relativeForcaImg.setVisibility(View.VISIBLE);
-            Animation animFadeIn = AnimationUtils.loadAnimation(this, R.anim.fad_in);
+            mostrarForca();
+            mostrarParteBoneco();
+            boneco.setErro();
+            if(!boneco.isDead()) {
+                new android.os.Handler().postDelayed(
+                        () -> {
+                            teclado.setVisibility(View.VISIBLE);
+                            ocultarForca();
 
-            partesBoneco.get(7-boneco.getBonecoHP()).setVisibility(View.VISIBLE);
-            animFadeIn.reset();
-            partesBoneco.get(7-boneco.getBonecoHP()).clearAnimation();
-            partesBoneco.get(7-boneco.getBonecoHP()).startAnimation(animFadeIn);
+                        }, 3000);
 
-            new android.os.Handler().postDelayed(
-                    () -> {
-                        teclado.setEnabled(true);
-                        this.palavrasLayout.setVisibility(View.VISIBLE);
-                        this.relativeForcaImg.setVisibility(View.INVISIBLE);
-
-                    }, 3000);
-
+            }else{
+                teclado.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(this, GameOverActivity.class));
+            }
         }
 
 
     }
 
-    public void onDica(View view) {
 
+    private void mostrarParteBoneco() {
+        Animation animFadeIn = AnimationUtils.loadAnimation(this, R.anim.fad_in);
+        ImageView parteImageView = partesBoneco.get(boneco.getParte());
+        parteImageView.setVisibility(View.VISIBLE);
+        animFadeIn.reset();
+        parteImageView.clearAnimation();
+        parteImageView.startAnimation(animFadeIn);
+    }
+
+    private void mostrarForca() {
+        this.palavrasLayout.setVisibility(View.INVISIBLE);
+        this.relativeForcaImg.setVisibility(View.VISIBLE);
+    }
+
+    private void ocultarForca() {
+        this.palavrasLayout.setVisibility(View.VISIBLE);
+        this.relativeForcaImg.setVisibility(View.INVISIBLE);
+    }
+
+    public void onDica(View view) {
+        // ToDO
     }
 
     public void onDigitarPalavra(View view) {
@@ -103,10 +123,8 @@ public class GameActivity extends AppCompatActivity {
     private void iniciarGame() {
         ocultarBoneco();
         Rodada rodada = new Rodada();
-        PalavraFrase palavraFrase = new PalavraFrase("RAMBO",1, "Filme do Rambo" );
+        PalavraFrase palavraFrase = new PalavraFrase("RAMBO SAIU CORRENDO E CAGOU",0, "Filme do Rambo" );
         palavras.add(palavraFrase);
-        PalavraFrase palavraFrase2 = new PalavraFrase("GODZILLA",1, "Filme do Rambo" );
-        palavras.add(palavraFrase2);
 
         montarPalavras(palavras);
     }

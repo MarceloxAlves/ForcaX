@@ -19,15 +19,15 @@
         </activity>
         <activity android:name=".app.ForcaActivity" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".app.ScoreActivity" />
+            android:name=".app.ScoreActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".app.GameActivity" >
-        </activity>
-        <activity android:name=".app.MainActivity"></activity>
+            android:name=".app.GameActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".app.MainActivity" />
         <activity android:name=".app.FormularioActivity" />
-        <activity android:name=".app.AdicionarTemaActivity"></activity>
+        <activity android:name=".app.AdicionarTemaActivity" />
+        <activity android:name=".app.GameOverActivity"></activity>
     </application>
 
 </manifest>
