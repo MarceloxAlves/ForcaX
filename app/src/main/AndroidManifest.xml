@@ -20,7 +20,8 @@
         <activity android:name=".app.ForcaActivity" />
         <activity android:name=".app.ScoreActivity" />
         <activity android:name=".app.GameActivity" />
-        <activity android:name=".app.MainActivity"></activity>
+        <activity android:name=".app.MainActivity" />
+        <activity android:name=".app.FormularioActivity"></activity>
     </application>
 
 </manifest>
