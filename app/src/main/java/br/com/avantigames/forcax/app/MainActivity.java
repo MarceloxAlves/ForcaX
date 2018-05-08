@@ -56,4 +56,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,FormularioActivity.class));
         finish();
     }
+
+    public void mostrarRecordes(View view) {
+        startActivity(new Intent(this,RecordesActivity.class));
+    }
 }

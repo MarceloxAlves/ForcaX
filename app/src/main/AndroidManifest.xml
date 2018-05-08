@@ -22,7 +22,9 @@
         <activity android:name=".app.GameActivity" />
         <activity android:name=".app.MainActivity" />
         <activity android:name=".app.FormularioActivity" />
-        <activity android:name=".app.AdicionarTemaActivity"></activity>
+        <activity android:name=".app.AdicionarTemaActivity" />
+        <activity android:name=".app.RecordesActivity" />
+        <activity android:name=".app.ItemRecordeViewHolderActivity"></activity>
     </application>
 
 </manifest>
