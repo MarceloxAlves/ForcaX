@@ -123,7 +123,7 @@ public class GameActivity extends AppCompatActivity {
     private void iniciarGame() {
         ocultarBoneco();
         Rodada rodada = new Rodada();
-        PalavraFrase palavraFrase = new PalavraFrase("RAMBO SAIU CORRENDO E CAGOU",0, "Filme do Rambo" );
+        PalavraFrase palavraFrase = new PalavraFrase("MARCELO",TipoTexto.Palavra.getCodigo(), "Filme do Rambo" );
         palavras.add(palavraFrase);
 
         montarPalavras(palavras);
@@ -137,13 +137,14 @@ public class GameActivity extends AppCompatActivity {
 
 
             for (int i = 0; i < palavras.get(a).getDescricao().length(); i++) {
-                if (palavras.get(a).getDescricao().charAt(i) ==  ' '){
+                if (palavras.get(a).getDescricao().charAt(i) ==  ' ') {
                     palavrasLayout.addView(linearLayout);
                     linearLayout = getLinearLayout();
-                };
-                TextView textView = getTextViewLetra();
-                linearLayout.addView(textView);
-                textViews.add(textView);
+                }
+                    TextView textView = getTextViewLetra();
+                    linearLayout.addView(textView);
+                    textViews.add(textView);
+
             }
 
             textViewList.add(textViews);

@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.avantigames.forcax">
 
+    <!-- Required to act as a custom watch face. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required for complications to receive complication data and open the provider chooser. -->
+    <uses-permission android:name="com.google.android.wearable.permission.RECEIVE_COMPLICATION_DATA" />
+
     <application
         android:name=".infra.App"
         android:allowBackup="true"
@@ -23,12 +27,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".app.GameActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".app.MainActivity" />
         <activity android:name=".app.FormularioActivity" />
         <activity android:name=".app.AdicionarTemaActivity" />
-        <activity android:name=".app.GameOverActivity"></activity>
-        <activity android:name=".app.AboutActivity"></activity>
+        <activity android:name=".app.GameOverActivity" />
+        <activity android:name=".app.AboutActivity" />
     </application>
 
 </manifest>

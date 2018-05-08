@@ -14,7 +14,7 @@ import io.objectbox.Box;
 
 public class Rodada {
 
-    public List<PalavraFrase> iniciarRodada(Box<PalavraFrase> palavraFraseBox){
+     public List<PalavraFrase> iniciarRodada(Box<PalavraFrase> palavraFraseBox){
         List<PalavraFrase> palavrasEscolhidas = new ArrayList<>();
         List<PalavraFrase> palavraFrases;
         if(sortearTipoTexto() ==  TipoTexto.Palavra.getCodigo()){
@@ -23,8 +23,8 @@ public class Rodada {
                 palavrasEscolhidas.add(palavraFrases.get(i));
             }
         }else{
-             palavraFrases = getPalavraFrases(palavraFraseBox, TipoTexto.Palavra);
-            palavrasEscolhidas.add(palavraFrases.get(new Random().nextInt(palavraFrases.size() - 1)));
+            palavraFrases = getPalavraFrases(palavraFraseBox, TipoTexto.Palavra);
+            palavrasEscolhidas = palavraFrases.get(new Random().nextInt(palavraFrases.size() - 1)).converterFraseEmPalavras();
 
         }
 
@@ -47,4 +47,6 @@ public class Rodada {
     private int sortearTipoTexto(){
         return  new Random().nextInt(TipoTexto.Palavra.getCodigo());
     }
+
+
 }
