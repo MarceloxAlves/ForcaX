@@ -59,5 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void mostrarSobre(View view) {
         startActivity(new Intent(this,AboutActivity.class));
+
     }
 }
