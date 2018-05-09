@@ -15,4 +15,10 @@
     <string name="salvar">Salvar</string>
     <string name="plus">+</string>
     <string name="config">Config</string>
+    <string name="tentar_novamente">Tentar Novamente</string>
+    <string name="aplicativo_criado_por">Aplicativo criado por:</string>
+    <string name="jesus">Jesus Abrahão Adad Filho</string>
+    <string name="marcelo">Marcelo Alves Perreira</string>
+    <string name="mayelle">Mayelle dos Santos Lima de Carvalho</string>
+    <string name="sobre_app_text">Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva</string>
 </resources>
