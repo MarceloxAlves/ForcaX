@@ -17,6 +17,10 @@
     <string name="config">Config</string>
     <string name="tentar_novamente">Tentar Novamente</string>
     <string name="aplicativo_criado_por">Aplicativo criado por:</string>
+    <string name="descricao">Descrição</string>
+    <string name="digite_a_palavra_ou_frase">Digite a(s) palavra(s) ou frase</string>
+    <string name="continuar">Continuar</string>
+    <string name="pontua_o">Pontuação</string>
     <string name="sobre_app_text">Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva</string>
     <string name="mayelle_dos_santos_lima_de_carvalho">Mayelle dos Santos Lima de Carvalho</string>
     <string name="marcelo_alves_perreira">Marcelo Alves Perreira</string>

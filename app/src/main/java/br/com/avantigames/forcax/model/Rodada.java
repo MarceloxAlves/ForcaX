@@ -14,18 +14,34 @@ import io.objectbox.Box;
 
 public class Rodada {
 
+    private int acertos;
+    private int totalLetras;
+
+
+    public boolean isVencedor(){
+        return acertos == totalLetras;
+    }
+
+    public void acertou(){
+        this.acertos++;
+    }
+
     public List<PalavraFrase> iniciarRodada(Box<PalavraFrase> palavraFraseBox){
         List<PalavraFrase> palavrasEscolhidas = new ArrayList<>();
         List<PalavraFrase> palavraFrases;
         if(sortearTipoTexto() ==  TipoTexto.Palavra.getCodigo()){
             palavraFrases = getPalavraFrases(palavraFraseBox, TipoTexto.Palavra);
             for (int i = 0; i < sortearQuantidadePalavras() ; i++) {
+                totalLetras += palavraFrases.get(i).getDescricao().length();
                 palavrasEscolhidas.add(palavraFrases.get(i));
             }
         }else{
-             palavraFrases = getPalavraFrases(palavraFraseBox, TipoTexto.Palavra);
-            palavrasEscolhidas.add(palavraFrases.get(new Random().nextInt(palavraFrases.size() - 1)));
-
+            palavraFrases = getPalavraFrases(palavraFraseBox, TipoTexto.Palavra);
+             List<PalavraFrase> palavras = palavraFrases.get(new Random().nextInt(palavraFrases.size() - 1)).converterFraseEmPalavras();
+            for (PalavraFrase palavra: palavras) {
+                totalLetras += palavra.getDescricao().length();
+            }
+            palavrasEscolhidas = palavras;
         }
 
         return palavrasEscolhidas;
@@ -47,4 +63,6 @@ public class Rodada {
     private int sortearTipoTexto(){
         return  new Random().nextInt(TipoTexto.Palavra.getCodigo());
     }
+
+
 }

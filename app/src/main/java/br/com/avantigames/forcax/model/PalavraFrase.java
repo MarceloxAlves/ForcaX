@@ -1,7 +1,9 @@
 package br.com.avantigames.forcax.model;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
@@ -67,13 +69,30 @@ public class PalavraFrase {
     public List<Integer> adivinhar(char letra){
         List<Integer> posicoes = new ArrayList<>();
          this.descricao.replace(" ","");
+         Collator collator = Collator.getInstance(new Locale("pt","BR"));
+         collator.setStrength(Collator.PRIMARY);
             for (int i = 0; i < this.descricao.length() ; i++) {
-                if(descricao.charAt(i) == letra){
+                if(collator.compare(String.valueOf(descricao.charAt(i)), String.valueOf(letra)) == 0){
                     posicoes.add(i);
                 }
              }
 
              return posicoes;
+    }
+
+    public static boolean adivinharPalavra(String palavra1, String palavra2){
+         Collator collator = Collator.getInstance(new Locale("pt","BR"));
+         collator.setStrength(Collator.PRIMARY);
+              return  collator.compare(palavra1, palavra2) == 0;
+    }
+
+    public List<PalavraFrase> converterFraseEmPalavras(){
+        String[] words = this.descricao.split(" ");
+        List<PalavraFrase> palavraFrases = new ArrayList<>();
+        for (int i = 0; i < words.length ; i++) {
+            palavraFrases.add(new PalavraFrase(words[i],TipoTexto.Palavra.getCodigo(),this.dica));
+        }
+        return palavraFrases;
     }
 
 }
