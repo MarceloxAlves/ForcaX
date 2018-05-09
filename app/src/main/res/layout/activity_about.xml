@@ -1,61 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg_game"
+    android:fillViewport="true"
     tools:context=".app.AboutActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_game">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/forca"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aplicativo_criado_por"
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/forca"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/aplicativo_criado_por"
-        android:layout_marginTop="40dp"
-        android:textAlignment="center"
-        android:textSize="15sp"
-        android:textColor="@color/white"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="@string/jesus"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:text="@string/marcelo"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:text="@string/mayelle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/jesus_abrah_o_adad_filho"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:padding="20dp"
-        android:text="@string/sobre_app_text"
-        android:textAlignment="viewStart"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        tools:ignore="RtlCompat" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/marcelo_alves_perreira"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/mayelle_dos_santos_lima_de_carvalho"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:padding="20dp"
+            android:text="@string/sobre_app_text"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            tools:ignore="RtlCompat" />
+    </LinearLayout>
+
+
+
+
+</ScrollView>

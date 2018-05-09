@@ -17,8 +17,8 @@
     <string name="config">Config</string>
     <string name="tentar_novamente">Tentar Novamente</string>
     <string name="aplicativo_criado_por">Aplicativo criado por:</string>
-    <string name="jesus">Jesus Abrahão Adad Filho</string>
-    <string name="marcelo">Marcelo Alves Perreira</string>
-    <string name="mayelle">Mayelle dos Santos Lima de Carvalho</string>
-    <string name="sobre_app_text">Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva</string>
+    <string name="sobre_app_text">Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva</string>
+    <string name="mayelle_dos_santos_lima_de_carvalho">Mayelle dos Santos Lima de Carvalho</string>
+    <string name="marcelo_alves_perreira">Marcelo Alves Perreira</string>
+    <string name="jesus_abrah_o_adad_filho">Jesus Abrahão Adad Filho</string>
 </resources>
