@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void adiciornarFrase(View view) {
-        startActivity(new Intent(this,FormularioActivity.class));
+        startActivity(new Intent(this,ListarPalavrasActivity.class));
         finish();
     }
 

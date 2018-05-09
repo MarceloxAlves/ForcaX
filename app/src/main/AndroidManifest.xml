@@ -32,10 +32,13 @@
         <activity android:name=".app.FormularioActivity" />
         <activity android:name=".app.AdicionarTemaActivity" />
         <activity android:name=".app.AboutActivity" />
-        <activity android:name=".app.GameWinActivity"></activity>
+        <activity android:name=".app.GameWinActivity" />
         <activity android:name=".app.RecordesActivity" />
-        <activity android:name=".app.ItemRecordeViewHolderActivity"></activity>
-        <activity android:name=".app.GameOverActivity"></activity>
+        <activity android:name=".app.ItemRecordeViewHolderActivity" />
+        <activity android:name=".app.GameOverActivity" />
+        <activity android:name=".app.AboutActivity" />
+        <activity android:name=".app.ListarPalavrasActivity" />
+        <activity android:name=".app.ItemPalavraViewHolderActivity"></activity>
     </application>
 
 </manifest>
