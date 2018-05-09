@@ -29,10 +29,11 @@
         android:textColor="@color/white"
         android:textSize="20sp" />
 
-    <TextView
+     <com.daasuu.cat.CountAnimationTextView
+         android:id="@+id/pontos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="120"
+        android:text="0"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40sp" />

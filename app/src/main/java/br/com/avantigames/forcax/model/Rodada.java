@@ -26,6 +26,10 @@ public class Rodada {
         this.acertos++;
     }
 
+    public int getPontos(){
+        return 100 + (totalLetras - acertos) * 15;
+    }
+
     public List<PalavraFrase> iniciarRodada(Box<PalavraFrase> palavraFraseBox){
         List<PalavraFrase> palavrasEscolhidas = new ArrayList<>();
         List<PalavraFrase> palavraFrases;

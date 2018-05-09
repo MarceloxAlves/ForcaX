@@ -11,6 +11,7 @@ import java.util.List;
 
 import br.com.avantigames.forcax.R;
 import br.com.avantigames.forcax.model.Jogador;
+import br.com.avantigames.forcax.model.Jogador_;
 import io.objectbox.Box;
 
 public class RecordesAdapter extends RecyclerView.Adapter<RecordesAdapter.RecordesViewHolder> {
@@ -27,7 +28,11 @@ public class RecordesAdapter extends RecyclerView.Adapter<RecordesAdapter.Record
     public RecordesAdapter(Context context, Box<Jogador> jogadorBox) {
         this.context = context;
         this.jogadorBox = jogadorBox;
-        this.jogadorList = jogadorBox.getAll();
+        this.jogadorList = jogadorBox
+                            .query()
+                            .orderDesc(Jogador_.score)
+                            .build()
+                            .find();
     }
 
     @Override
@@ -45,7 +50,7 @@ public class RecordesAdapter extends RecyclerView.Adapter<RecordesAdapter.Record
 
         holder.textNome.setText(jogador.getNome());
         holder.textIndex.setText("" + position + 1);
-        holder.textPontuacao.setText(jogador.getScore());
+        holder.textPontuacao.setText(""+jogador.getScore());
 
     }
 

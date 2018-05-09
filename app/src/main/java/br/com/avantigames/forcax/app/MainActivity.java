@@ -61,4 +61,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,AboutActivity.class));
 
     }
+
+    public void mostrarRecordes(View view) {
+        startActivity(new Intent(this,RecordesActivity.class));
+
+    }
 }

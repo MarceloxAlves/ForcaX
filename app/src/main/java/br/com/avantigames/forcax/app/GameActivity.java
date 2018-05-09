@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,6 +174,8 @@ public class GameActivity extends AppCompatActivity {
     private void gameWin(){
         finish();
         Intent intent = new Intent(this, GameWinActivity.class);
+        intent.putExtra("pontos", rodada.getPontos());
+        intent.putExtra("id", jogador.id);
         startActivity(intent);
     }
 
