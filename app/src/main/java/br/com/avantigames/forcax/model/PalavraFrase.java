@@ -80,6 +80,12 @@ public class PalavraFrase {
              return posicoes;
     }
 
+    public static boolean adivinharPalavra(String palavra1, String palavra2){
+         Collator collator = Collator.getInstance(new Locale("pt","BR"));
+         collator.setStrength(Collator.PRIMARY);
+              return  collator.compare(palavra1, palavra2) == 0;
+    }
+
     public List<PalavraFrase> converterFraseEmPalavras(){
         String[] words = this.descricao.split(" ");
         List<PalavraFrase> palavraFrases = new ArrayList<>();

@@ -1,5 +1,6 @@
 package br.com.avantigames.forcax.app;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -22,6 +24,7 @@ import br.com.avantigames.forcax.R;
 import br.com.avantigames.forcax.infra.App;
 import br.com.avantigames.forcax.model.Boneco;
 import br.com.avantigames.forcax.model.Jogador;
+import br.com.avantigames.forcax.model.Jogador_;
 import br.com.avantigames.forcax.model.PalavraFrase;
 import br.com.avantigames.forcax.model.Rodada;
 import br.com.avantigames.forcax.model.Tema;
@@ -38,7 +41,11 @@ public class GameActivity extends AppCompatActivity {
     List<ImageView> partesBoneco;
     List<List<TextView>> textViewList;
     List<PalavraFrase> palavras = new ArrayList<>();
+    TextView temaTextView;
+    TextView jogadorTextView;
     private Boneco boneco;
+    Rodada rodada;
+    Jogador jogador;
 
     Box<PalavraFrase> palavraFraseBox;
 
@@ -48,7 +55,14 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         textViewList = new ArrayList<>();
         palavraFraseBox = ((App) getApplication()).getBoxStore().boxFor(PalavraFrase.class);
+        Box<Jogador> jogadorBox = ((App) getApplication()).getBoxStore().boxFor(Jogador.class);
 
+        long id = getIntent().getLongExtra("id",0);
+        if(id > 0){
+            jogador =  jogadorBox.get(id);
+        }else {
+            finish();
+        }
         initialize();
         iniciarGame();
     }
@@ -69,6 +83,10 @@ public class GameActivity extends AppCompatActivity {
             }
         }
         if (acertou){
+            rodada.acertou();
+            if (rodada.isVencedor()){
+                gameWin();
+            }
             view.setBackground(getDrawable(R.drawable.btn_acerto));
         }else{
             teclado.setVisibility(View.INVISIBLE);
@@ -86,7 +104,7 @@ public class GameActivity extends AppCompatActivity {
 
             }else{
                 teclado.setVisibility(View.INVISIBLE);
-                startActivity(new Intent(this, GameOverActivity.class));
+               gameOver();
             }
         }
 
@@ -115,17 +133,53 @@ public class GameActivity extends AppCompatActivity {
 
     public void onDica(View view) {
         // ToDO
-    }
+}
 
     public void onDigitarPalavra(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View inflate = getLayoutInflater().inflate(R.layout.form_imput, null);
+        EditText palavra =  inflate.findViewById(R.id.decricao);
+
+        builder.setView(inflate)
+                .setNegativeButton("Cancelar", (dialog, id) -> {
+                    dialog.dismiss();
+                })
+                .setPositiveButton("Adivinhar", (dialog, id) -> {
+                     String[] split = palavra.getText().toString().split(" ");
+                     if (split.length == palavras.size()){
+                         boolean ganhou = true;
+                         for (int i = 0; i < palavras.size() ; i++) {
+                            if (!PalavraFrase.adivinharPalavra(palavras.get(i).getDescricao(),split[i])){
+                                ganhou = false;
+                            };
+                         }
+
+                         if (ganhou) gameWin();
+                         else gameOver();
+
+                     }else
+                        gameOver();
+
+                });
+        builder.create();
+        builder.show();
+    }
+
+    private void gameOver(){
+        finish();
+        startActivity(new Intent(this, GameOverActivity.class));
+    }
+
+    private void gameWin(){
+        finish();
+        Intent intent = new Intent(this, GameWinActivity.class);
+        startActivity(intent);
     }
 
     private void iniciarGame() {
         ocultarBoneco();
-        Rodada rodada = new Rodada();
-        PalavraFrase palavraFrase = new PalavraFrase("MARCELO",TipoTexto.Palavra.getCodigo(), "Filme do Rambo" );
-        palavras.add(palavraFrase);
-
+        rodada = new Rodada();
+        palavras = rodada.iniciarRodada(palavraFraseBox);
         montarPalavras(palavras);
     }
 
@@ -135,6 +189,8 @@ public class GameActivity extends AppCompatActivity {
             LinearLayout linearLayout = getLinearLayout();
             List<TextView> textViews = new ArrayList<>();
 
+            if(palavras.get(a).getTemaToOne().getTarget() != null)
+                temaTextView.setText(palavras.get(a).getTemaToOne().getTarget().getDescricao());
 
             for (int i = 0; i < palavras.get(a).getDescricao().length(); i++) {
                 if (palavras.get(a).getDescricao().charAt(i) ==  ' ') {
@@ -183,6 +239,9 @@ public class GameActivity extends AppCompatActivity {
         palavrasLayout = findViewById(R.id.palavras);
         relativeForcaImg = findViewById(R.id.relativeForcaImg);
         teclado = findViewById(R.id.teclado);
+        temaTextView = findViewById(R.id.tema);
+        jogadorTextView = findViewById(R.id.nome_jogador);
+        jogadorTextView.setText(jogador.getNome());
         partesBoneco = new ArrayList<>();
         partesBoneco.add(findViewById(R.id.headImage));
         partesBoneco.add(findViewById(R.id.body));
@@ -191,6 +250,7 @@ public class GameActivity extends AppCompatActivity {
         partesBoneco.add(findViewById(R.id.leftLeg));
         partesBoneco.add(findViewById(R.id.rigthLeg));
         partesBoneco.add(findViewById(R.id.leftFoot));
+        partesBoneco.add(findViewById(R.id.rigthFoot));
         partesBoneco.add(findViewById(R.id.rigthFoot));
         boneco = new Boneco();
     }

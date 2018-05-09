@@ -33,6 +33,7 @@
         <activity android:name=".app.AdicionarTemaActivity" />
         <activity android:name=".app.GameOverActivity" />
         <activity android:name=".app.AboutActivity" />
+        <activity android:name=".app.GameWinActivity"></activity>
     </application>
 
 </manifest>

@@ -21,4 +21,8 @@
     <string name="marcelo">Marcelo Alves Perreira</string>
     <string name="mayelle">Mayelle dos Santos Lima de Carvalho</string>
     <string name="sobre_app_text">Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva</string>
+    <string name="descricao">Descrição</string>
+    <string name="digite_a_palavra_ou_frase">Digite a(s) palavra(s) ou frase</string>
+    <string name="continuar">Continuar</string>
+    <string name="pontua_o">Pontuação</string>
 </resources>
