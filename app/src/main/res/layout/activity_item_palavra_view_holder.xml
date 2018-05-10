@@ -14,6 +14,16 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/palavra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/palavra_frase_show"
+            android:text="Palavra - "
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/palavra_frase_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,8 +31,18 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:textSize="20sp"
-            android:text="Palavra : teresina"
+            android:text="@string/teresina"
             android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/dica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/dica_show"
+            android:text="Dica - "
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/dica_show"
@@ -33,7 +53,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
             android:textSize="20sp"
-            android:text="Dica : cidade"
+            android:text="@string/cidade"
             android:textAlignment="center" />
     </RelativeLayout>
 
