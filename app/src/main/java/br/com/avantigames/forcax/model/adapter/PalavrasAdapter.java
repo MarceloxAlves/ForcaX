@@ -3,8 +3,10 @@ package br.com.avantigames.forcax.model.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.List;
@@ -43,8 +45,23 @@ public class PalavrasAdapter extends RecyclerView.Adapter<PalavrasAdapter.Palavr
     @Override
     public void onBindViewHolder(PalavraViewHolder holder, int position) {
         PalavraFrase palavraFrase = palavraFrasesList.get(position);
-        holder.dicaText.setText("Dica : " + palavraFrase.getDica());
-        holder.palavraText.setText("Palavra : " + palavraFrase.getDescricao());
+        holder.dicaText.setText(palavraFrase.getDica());
+        holder.palavraText.setText(palavraFrase.getDescricao());
+
+        holder.itemView.setOnLongClickListener((View view) ->{
+            PopupMenu popup = new PopupMenu(context,view);
+            popup.getMenuInflater().inflate(R.menu.delete,popup.getMenu());
+            popup.setOnMenuItemClickListener((MenuItem ->{
+                if(MenuItem.getItemId() == R.id.delete_palavra){
+                    palavraFraseBox.remove(palavraFrase.id);
+                    notifyDataSetChanged();
+                }
+                return false;
+            }));
+            popup.show();
+            return true;
+
+        });
 
     }
 

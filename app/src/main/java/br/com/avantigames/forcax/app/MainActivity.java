@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void adiciornarFrase(View view) {
         startActivity(new Intent(this,ListarPalavrasActivity.class));
-        finish();
     }
 
     public void mostrarSobre(View view) {
