@@ -36,7 +36,6 @@
         <activity android:name=".app.RecordesActivity" />
         <activity android:name=".app.ItemRecordeViewHolderActivity" />
         <activity android:name=".app.GameOverActivity" />
-        <activity android:name=".app.AboutActivity" />
         <activity android:name=".app.ListarPalavrasActivity" />
         <activity android:name=".app.ItemPalavraViewHolderActivity"></activity>
     </application>

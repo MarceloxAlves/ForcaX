@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -44,10 +45,7 @@ public class GameActivity extends AppCompatActivity {
     List<PalavraFrase> palavras = new ArrayList<>();
     TextView temaTextView;
     TextView jogadorTextView;
-    private Boneco boneco;
     Rodada rodada;
-    Jogador jogador;
-
     Box<PalavraFrase> palavraFraseBox;
 
     @Override
@@ -56,15 +54,14 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         textViewList = new ArrayList<>();
         palavraFraseBox = ((App) getApplication()).getBoxStore().boxFor(PalavraFrase.class);
-        Box<Jogador> jogadorBox = ((App) getApplication()).getBoxStore().boxFor(Jogador.class);
+
 
         long id = getIntent().getLongExtra("id",0);
         if(id > 0){
-            jogador =  jogadorBox.get(id);
+            initialize(id);
         }else {
             finish();
         }
-        initialize();
         iniciarGame();
     }
 
@@ -79,12 +76,12 @@ public class GameActivity extends AppCompatActivity {
             if (adivinhar.size() > 0){
                 for (Integer a: adivinhar){
                       textViewList.get(i).get(a).setText(String.valueOf(letra));
-                    acertou = true;
+                      rodada.acertou();
+                      acertou = true;
                 }
             }
         }
         if (acertou){
-            rodada.acertou();
             if (rodada.isVencedor()){
                 gameWin();
             }
@@ -94,8 +91,8 @@ public class GameActivity extends AppCompatActivity {
             view.setBackground(getDrawable(R.drawable.btn_erro));
             mostrarForca();
             mostrarParteBoneco();
-            boneco.setErro();
-            if(!boneco.isDead()) {
+           ;
+            if(!rodada.getBoneco().isDead()) {
                 new android.os.Handler().postDelayed(
                         () -> {
                             teclado.setVisibility(View.VISIBLE);
@@ -115,7 +112,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void mostrarParteBoneco() {
         Animation animFadeIn = AnimationUtils.loadAnimation(this, R.anim.fad_in);
-        ImageView parteImageView = partesBoneco.get(boneco.getParte());
+        ImageView parteImageView = partesBoneco.get(rodada.getBoneco().getParte());
         parteImageView.setVisibility(View.VISIBLE);
         animFadeIn.reset();
         parteImageView.clearAnimation();
@@ -133,8 +130,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void onDica(View view) {
-        // ToDO
-}
+        for (PalavraFrase palavra : palavras ){
+            Toast.makeText(this, palavra.getDica(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void onDigitarPalavra(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -174,15 +173,14 @@ public class GameActivity extends AppCompatActivity {
     private void gameWin(){
         finish();
         Intent intent = new Intent(this, GameWinActivity.class);
-        intent.putExtra("pontos", rodada.getPontos());
-        intent.putExtra("id", jogador.id);
+        intent.putExtra("pontos",  rodada.getPontos());
+        intent.putExtra("id", rodada.getJogador().id);
         startActivity(intent);
     }
 
     private void iniciarGame() {
         ocultarBoneco();
-        rodada = new Rodada();
-        palavras = rodada.iniciarRodada(palavraFraseBox);
+        palavras = rodada.palavrasEscolhidas();
         montarPalavras(palavras);
     }
 
@@ -192,8 +190,7 @@ public class GameActivity extends AppCompatActivity {
             LinearLayout linearLayout = getLinearLayout();
             List<TextView> textViews = new ArrayList<>();
 
-            if(palavras.get(a).getTemaToOne().getTarget() != null)
-                temaTextView.setText(palavras.get(a).getTemaToOne().getTarget().getDescricao());
+           temaTextView.setText(palavras.get(a).getTemaToOne().getTarget().getDescricao());
 
             for (int i = 0; i < palavras.get(a).getDescricao().length(); i++) {
                 if (palavras.get(a).getDescricao().charAt(i) ==  ' ') {
@@ -238,13 +235,13 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    private void initialize() {
+    private void initialize(long idJogador) {
+        Box<Jogador> jogadorBox = ((App) getApplication()).getBoxStore().boxFor(Jogador.class);
         palavrasLayout = findViewById(R.id.palavras);
         relativeForcaImg = findViewById(R.id.relativeForcaImg);
         teclado = findViewById(R.id.teclado);
         temaTextView = findViewById(R.id.tema);
         jogadorTextView = findViewById(R.id.nome_jogador);
-        jogadorTextView.setText(jogador.getNome());
         partesBoneco = new ArrayList<>();
         partesBoneco.add(findViewById(R.id.headImage));
         partesBoneco.add(findViewById(R.id.body));
@@ -255,6 +252,9 @@ public class GameActivity extends AppCompatActivity {
         partesBoneco.add(findViewById(R.id.leftFoot));
         partesBoneco.add(findViewById(R.id.rigthFoot));
         partesBoneco.add(findViewById(R.id.rigthFoot));
-        boneco = new Boneco();
+        Boneco boneco = new Boneco();
+        rodada = new Rodada(jogadorBox.get(idJogador), boneco,palavraFraseBox);
+        jogadorTextView.setText(rodada.getJogador().getNome());
+
     }
 }

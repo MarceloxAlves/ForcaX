@@ -54,10 +54,6 @@ public class PalavraFrase {
         return temaToOne;
     }
 
-    public void setTemaToOne(ToOne<Tema> temaToOne) {
-        this.temaToOne = temaToOne;
-    }
-
     public String getDica() {
         return dica;
     }
@@ -90,7 +86,9 @@ public class PalavraFrase {
         String[] words = this.descricao.split(" ");
         List<PalavraFrase> palavraFrases = new ArrayList<>();
         for (int i = 0; i < words.length ; i++) {
-            palavraFrases.add(new PalavraFrase(words[i],TipoTexto.Palavra.getCodigo(),this.dica));
+            PalavraFrase palavra = new PalavraFrase(words[i],TipoTexto.Palavra.getCodigo(),this.dica);
+            palavra.getTemaToOne().setTarget(this.getTemaToOne().getTarget());
+            palavraFrases.add(palavra);
         }
         return palavraFrases;
     }
