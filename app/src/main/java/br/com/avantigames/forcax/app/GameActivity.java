@@ -87,11 +87,12 @@ public class GameActivity extends AppCompatActivity {
             }
             view.setBackground(getDrawable(R.drawable.btn_acerto));
         }else{
-            rodada.getBoneco().setErro();
+
             teclado.setVisibility(View.INVISIBLE);
             view.setBackground(getDrawable(R.drawable.btn_erro));
             mostrarForca();
             mostrarParteBoneco();
+            rodada.getBoneco().setErro();
             if(!rodada.getBoneco().isDead()) {
                 new android.os.Handler().postDelayed(
                         () -> {
