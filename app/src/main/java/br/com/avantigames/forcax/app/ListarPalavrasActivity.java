@@ -25,6 +25,11 @@ public class ListarPalavrasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listar_palavras);
         setupViews();
         palavraFraseBox = ((App) getApplication()).getBoxStore().boxFor(PalavraFrase.class);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         recyclerView.setAdapter(new PalavrasAdapter(this,palavraFraseBox));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

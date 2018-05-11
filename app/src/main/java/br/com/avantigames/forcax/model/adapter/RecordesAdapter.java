@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -49,8 +50,11 @@ public class RecordesAdapter extends RecyclerView.Adapter<RecordesAdapter.Record
         Jogador jogador = this.jogadorList.get(position);
 
         holder.textNome.setText(jogador.getNome());
-        holder.textIndex.setText("" + position + 1);
+        holder.textIndex.setText("" + (position + 1));
         holder.textPontuacao.setText(""+jogador.getScore());
+        if(position == 0){
+            holder.trofeuImage.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -61,11 +65,13 @@ public class RecordesAdapter extends RecyclerView.Adapter<RecordesAdapter.Record
 
     public class RecordesViewHolder extends RecyclerView.ViewHolder{
         TextView textIndex, textNome, textPontuacao;
+        ImageView trofeuImage;
         public RecordesViewHolder(View itemView) {
             super(itemView);
             textIndex = itemView.findViewById(R.id.index_record);
             textNome = itemView.findViewById(R.id.nome_jogador);
             textPontuacao = itemView.findViewById(R.id.pontuacao_jogador);
+            trofeuImage = itemView.findViewById(R.id.trofeu);
         }
     }
 }
