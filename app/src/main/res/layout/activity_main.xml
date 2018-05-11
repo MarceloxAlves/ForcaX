@@ -74,6 +74,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:onClick="sair"
             android:background="@drawable/button_layout"
             android:layout_marginLeft="30dp"
             android:text="@string/sair"/>

@@ -87,11 +87,11 @@ public class GameActivity extends AppCompatActivity {
             }
             view.setBackground(getDrawable(R.drawable.btn_acerto));
         }else{
+            rodada.getBoneco().setErro();
             teclado.setVisibility(View.INVISIBLE);
             view.setBackground(getDrawable(R.drawable.btn_erro));
             mostrarForca();
             mostrarParteBoneco();
-           ;
             if(!rodada.getBoneco().isDead()) {
                 new android.os.Handler().postDelayed(
                         () -> {
@@ -167,7 +167,9 @@ public class GameActivity extends AppCompatActivity {
 
     private void gameOver(){
         finish();
-        startActivity(new Intent(this, GameOverActivity.class));
+        Intent intent = new Intent(this, GameOverActivity.class);
+        intent.putExtra("id", rodada.getJogador().id);
+        startActivity(intent);
     }
 
     private void gameWin(){
@@ -189,8 +191,7 @@ public class GameActivity extends AppCompatActivity {
         for (int a = 0; a < palavras.size(); a++) {
             LinearLayout linearLayout = getLinearLayout();
             List<TextView> textViews = new ArrayList<>();
-
-           temaTextView.setText(palavras.get(a).getTemaToOne().getTarget().getDescricao());
+            temaTextView.setText(temaTextView.getText() + " " + palavras.get(a).getTemaToOne().getTarget().getDescricao());
 
             for (int i = 0; i < palavras.get(a).getDescricao().length(); i++) {
                 if (palavras.get(a).getDescricao().charAt(i) ==  ' ') {
@@ -198,6 +199,7 @@ public class GameActivity extends AppCompatActivity {
                     linearLayout = getLinearLayout();
                 }
                     TextView textView = getTextViewLetra();
+
                     linearLayout.addView(textView);
                     textViews.add(textView);
 
@@ -214,7 +216,7 @@ public class GameActivity extends AppCompatActivity {
         layoutParamsText.setMargins(0, 0, 10, 0);
         textView.setLayoutParams(layoutParamsText);
         textView.setText("_");
-        textView.setTextSize(50);
+        textView.setTextSize(20);
         return textView;
     }
 

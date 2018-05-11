@@ -88,7 +88,6 @@ public class FormularioActivity extends AppCompatActivity implements AdapterView
             return;
         }
         palavraFraseBox.put(nPalavraFrase);
-        startActivity(new Intent(this,ListarPalavrasActivity.class));
         finish();
 
 
