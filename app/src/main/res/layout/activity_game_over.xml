@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@drawable/button_layout"
+            android:onClick="tentarNovamente"
             android:text="@string/tentar_novamente" />
 
         <Button
@@ -29,6 +30,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:onClick="sair"
             android:background="@drawable/button_layout"
             android:text="@string/sair"/>
 

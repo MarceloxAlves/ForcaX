@@ -52,20 +52,23 @@ public class Rodada implements Serializable {
     public List<PalavraFrase> palavrasEscolhidas(){
         List<PalavraFrase> palavrasEscolhidas = new ArrayList<>();
         List<PalavraFrase> palavraFrases;
-        if(sortearTipoTexto() ==  TipoTexto.Palavra.getCodigo()){
-            palavraFrases = getPalavraFrases(this.palavraFraseBox, TipoTexto.Palavra);
-            for (int i = 0; i < sortearQuantidadePalavras() ; i++) {
-                totalLetras += palavraFrases.get(i).getDescricao().length();
-                palavrasEscolhidas.add(palavraFrases.get(i));
+         switch (sortearTipoTexto()){
+             case 1:
+                palavraFrases = getPalavraFrases(this.palavraFraseBox, TipoTexto.Palavra);
+                for (int i = 0; i < sortearQuantidadePalavras() ; i++) {
+                    totalLetras += palavraFrases.get(i).getDescricao().length();
+                    palavrasEscolhidas.add(palavraFrases.get(i));
+                }
+                break;
+             case 0:
+                palavraFrases = getPalavraFrases(this.palavraFraseBox, TipoTexto.Frase);
+                 List<PalavraFrase> palavras = palavraFrases.get(new Random().nextInt(palavraFrases.size())).converterFraseEmPalavras();
+                for (PalavraFrase palavra: palavras) {
+                    totalLetras += palavra.getDescricao().length();
+                }
+                palavrasEscolhidas = palavras;
+                break;
             }
-        }else{
-            palavraFrases = getPalavraFrases(this.palavraFraseBox, TipoTexto.Palavra);
-             List<PalavraFrase> palavras = palavraFrases.get(new Random().nextInt(palavraFrases.size())).converterFraseEmPalavras();
-            for (PalavraFrase palavra: palavras) {
-                totalLetras += palavra.getDescricao().length();
-            }
-            palavrasEscolhidas = palavras;
-        }
 
         return palavrasEscolhidas;
     }

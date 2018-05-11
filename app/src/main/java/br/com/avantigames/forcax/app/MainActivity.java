@@ -71,4 +71,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,RecordesActivity.class));
 
     }
+
+    public void sair(View view) {
+        System.exit(0);
+    }
 }

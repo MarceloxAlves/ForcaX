@@ -87,7 +87,10 @@ public class PalavraFrase {
         List<PalavraFrase> palavraFrases = new ArrayList<>();
         for (int i = 0; i < words.length ; i++) {
             PalavraFrase palavra = new PalavraFrase(words[i],TipoTexto.Palavra.getCodigo(),this.dica);
-            palavra.getTemaToOne().setTarget(this.getTemaToOne().getTarget());
+            if(i==0)
+                palavra.getTemaToOne().setTarget(this.getTemaToOne().getTarget());
+            else palavra.getTemaToOne().setTarget(new Tema(""));
+
             palavraFrases.add(palavra);
         }
         return palavraFrases;
