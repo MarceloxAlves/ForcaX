@@ -14,6 +14,7 @@ import br.com.avantigames.forcax.R;
 import br.com.avantigames.forcax.infra.App;
 import br.com.avantigames.forcax.model.Jogador;
 import br.com.avantigames.forcax.model.Jogador_;
+import br.com.avantigames.forcax.utils.Validator;
 import io.objectbox.Box;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,17 +36,22 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss();
                 })
                 .setPositiveButton("Jogar", (dialog, id) -> {
-                    Box<Jogador> jogadorBox = ((App) getApplication()).getBoxStore().boxFor(Jogador.class);
-                    List<Jogador> jogadores = jogadorBox.query().equal(Jogador_.nome, nomeJogador.getText().toString()).build().find();
-                    Jogador jogador;
-                    if (jogadores.size() > 0) jogador = jogadores.get(0);
-                    else{
-                        jogador = new Jogador(nomeJogador.getText().toString());
+                    try{
+                        Box<Jogador> jogadorBox = ((App) getApplication()).getBoxStore().boxFor(Jogador.class);
+                        List<Jogador> jogadores = jogadorBox.query().equal(Jogador_.nome, nomeJogador.getText().toString()).build().find();
+                        Jogador jogador;
+                        if (jogadores.size() > 0) jogador = jogadores.get(0);
+                        else{
+                            jogador = new Jogador(Validator.validade(nomeJogador));
+                        }
+                        long codigo  = jogadorBox.put(jogador);
+                        Intent intent = new Intent(this,GameActivity.class);
+                        intent.putExtra("id",codigo);
+                        startActivity(intent);
+                    }catch (Exception ex){
+                        Toast.makeText(this, "Info: "+ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                    long codigo  = jogadorBox.put(jogador);
-                    Intent intent = new Intent(this,GameActivity.class);
-                    intent.putExtra("id",codigo);
-                    startActivity(intent);
+
 
                 });
         builder.create();

@@ -18,10 +18,6 @@ public class Jogador {
     public Jogador() {
     }
 
-    public void pontuar(){
-        //ToDo
-    }
-
     public String getNome() {
         return nome;
     }

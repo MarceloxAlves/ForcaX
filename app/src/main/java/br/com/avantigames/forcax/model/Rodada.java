@@ -1,7 +1,6 @@
 package br.com.avantigames.forcax.model;
 
-import android.support.annotation.NonNull;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,14 +11,34 @@ import io.objectbox.Box;
  * Created by Marcelo on 06/05/2018.
  */
 
-public class Rodada {
+public class Rodada implements Serializable {
 
     private int acertos;
     private int totalLetras;
+    private Jogador jogador;
+    private Boneco boneco;
+    private Box<PalavraFrase> palavraFraseBox;
+
 
 
     public boolean isVencedor(){
         return acertos == totalLetras;
+    }
+
+    public Rodada(Jogador jogador, Boneco boneco, Box<PalavraFrase> palavraFraseBox) {
+        this.jogador = jogador;
+        this.boneco = boneco;
+        this.palavraFraseBox = palavraFraseBox;
+        totalLetras = 0;
+
+    }
+
+    public Jogador getJogador() {
+        return jogador;
+    }
+
+    public Boneco getBoneco() {
+        return boneco;
     }
 
     public void acertou(){
@@ -30,18 +49,18 @@ public class Rodada {
         return 100 + (totalLetras - acertos) * 15;
     }
 
-    public List<PalavraFrase> iniciarRodada(Box<PalavraFrase> palavraFraseBox){
+    public List<PalavraFrase> palavrasEscolhidas(){
         List<PalavraFrase> palavrasEscolhidas = new ArrayList<>();
         List<PalavraFrase> palavraFrases;
         if(sortearTipoTexto() ==  TipoTexto.Palavra.getCodigo()){
-            palavraFrases = getPalavraFrases(palavraFraseBox, TipoTexto.Palavra);
+            palavraFrases = getPalavraFrases(this.palavraFraseBox, TipoTexto.Palavra);
             for (int i = 0; i < sortearQuantidadePalavras() ; i++) {
                 totalLetras += palavraFrases.get(i).getDescricao().length();
                 palavrasEscolhidas.add(palavraFrases.get(i));
             }
         }else{
-            palavraFrases = getPalavraFrases(palavraFraseBox, TipoTexto.Palavra);
-             List<PalavraFrase> palavras = palavraFrases.get(new Random().nextInt(palavraFrases.size() - 1)).converterFraseEmPalavras();
+            palavraFrases = getPalavraFrases(this.palavraFraseBox, TipoTexto.Palavra);
+             List<PalavraFrase> palavras = palavraFrases.get(new Random().nextInt(palavraFrases.size())).converterFraseEmPalavras();
             for (PalavraFrase palavra: palavras) {
                 totalLetras += palavra.getDescricao().length();
             }
@@ -65,7 +84,7 @@ public class Rodada {
     }
 
     private int sortearTipoTexto(){
-        return  new Random().nextInt(TipoTexto.Palavra.getCodigo());
+        return  new Random().nextInt(2);
     }
 
 
