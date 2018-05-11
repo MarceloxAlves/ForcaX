@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_game"
+    tools:context="br.com.avantigames.forcax.app.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jogo_da_forca"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="20dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/forca" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/iniciar_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:onClick="onIniciarGame"
+            android:background="@drawable/button_layout"
+            android:text="@string/iniciar"/>
+
+        <Button
+            android:id="@+id/recordes_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_layout"
+            android:layout_marginLeft="30dp"
+            android:onClick="mostrarRecordes"
+            android:text="@string/recordes"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+
+        >
+
+        <Button
+            android:id="@+id/config_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_layout"
+            android:text="@string/config"
+            android:onClick="adiciornarFrase"/>
+
+        <Button
+            android:id="@+id/sair_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:onClick="sair"
+            android:background="@drawable/button_layout"
+            android:layout_marginLeft="30dp"
+            android:text="@string/sair"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+
+        >
+
+        <Button
+            android:id="@+id/sobre_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_layout"
+            android:text="@string/sobre"
+            android:onClick="mostrarSobre"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

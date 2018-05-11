@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ForcaX</string>
+    <string name="jogo_da_forca">Jogo Da Forca</string>
+    <string name="tentar">tentar</string>
+    <string name="j_sei">Já sei</string>
+    <string name="sair">Sair</string>
+    <string name="sobre">Sobre</string>
+    <string name="recordes">Recordes</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="nome">Nome</string>
+    <string name="palavra">Palavra</string>
+    <string name="frase">Frase</string>
+    <string name="tema">Tema</string>
+    <string name="dica">Dica</string>
+    <string name="salvar">Salvar</string>
+    <string name="plus">+</string>
+    <string name="config">Config</string>
+    <string name="tentar_novamente">Tentar Novamente</string>
+    <string name="aplicativo_criado_por">Aplicativo criado por:</string>
+    <string name="descricao">Descrição</string>
+    <string name="digite_a_palavra_ou_frase">Digite a(s) palavra(s) ou frase</string>
+    <string name="continuar">Continuar</string>
+    <string name="pontua_o">Pontuação</string>
+    <string name="sobre_app_text">Aplicativo criado no intuito de cumprir uma atividade da materia de programação corporativa do curso de ADS ministrada pelo professor Rogerio Silva</string>
+    <string name="mayelle_dos_santos_lima_de_carvalho">Mayelle dos Santos Lima de Carvalho</string>
+    <string name="marcelo_alves_perreira">Marcelo Alves Perreira</string>
+    <string name="jesus_abrah_o_adad_filho">Jesus Abrahão Adad Filho</string>
+    <string name="teresina">teresina</string>
+    <string name="cidade">cidade</string>
+    <string name="deletar">Deletar</string>
+    <string name="exception_campo_obrigatorio">Este campo é obrigatório</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_game"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="br.com.avantigames.forcax.app.GameOverActivity">
+
+    <ImageView
+        android:id="@+id/forcaMain"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/gameover" />
+
+        <Button
+            android:id="@+id/config_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/button_layout"
+            android:onClick="tentarNovamente"
+            android:text="@string/tentar_novamente" />
+
+        <Button
+            android:id="@+id/sair_btn"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:onClick="sair"
+            android:background="@drawable/button_layout"
+            android:text="@string/sair"/>
+
+</LinearLayout>

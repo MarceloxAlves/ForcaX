@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10px"
+    android:background="@drawable/bg_game"
+    tools:context=".app.FormularioActivity">
+
+    <RadioGroup
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <RadioButton
+            android:id="@+id/palvra_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="serif"
+            android:checked="true"
+            android:text="@string/palavra"/>
+        <RadioButton
+            android:id="@+id/frase_btn"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="serif"
+            android:text="@string/frase"/>
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/palavra_frase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="40"/>
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tema"
+        android:textSize="20sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/tema_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+        </Spinner>
+        <Button
+            android:id="@+id/adiciona_tema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="adicinarTema"
+            android:background="@drawable/button_layout"
+            android:text="@string/plus"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dica"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"/>
+    <EditText
+        android:id="@+id/dica"
+        android:textColor="@color/white"
+        android:maxLength="50"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_layout"
+        android:layout_gravity="end"
+        android:onClick="salvar"
+        android:text="@string/salvar" />
+
+
+</LinearLayout>

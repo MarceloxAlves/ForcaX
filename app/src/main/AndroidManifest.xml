@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.com.avantigames.forcax">
+
+    <!-- Required to act as a custom watch face. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required for complications to receive complication data and open the provider chooser. -->
+    <uses-permission android:name="com.google.android.wearable.permission.RECEIVE_COMPLICATION_DATA" />
+
+    <application
+        android:name=".infra.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".app.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".app.ForcaActivity" />
+        <activity
+            android:name=".app.ScoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.GameActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".app.MainActivity" />
+        <activity android:name=".app.FormularioActivity"
+            android:parentActivityName=".app.ListarPalavrasActivity"/>
+        <activity android:name=".app.AdicionarTemaActivity" />
+        <activity android:name=".app.AboutActivity" />
+        <activity android:name=".app.GameWinActivity" />
+        <activity android:name=".app.RecordesActivity" />
+        <activity android:name=".app.ItemRecordeViewHolderActivity" />
+        <activity android:name=".app.GameOverActivity" />
+        <activity android:name=".app.ListarPalavrasActivity" />
+        <activity android:name=".app.ItemPalavraViewHolderActivity"></activity>
+    </application>
+
+</manifest>
