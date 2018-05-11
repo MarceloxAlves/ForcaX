@@ -29,7 +29,8 @@
             android:name=".app.GameActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".app.MainActivity" />
-        <activity android:name=".app.FormularioActivity" />
+        <activity android:name=".app.FormularioActivity"
+            android:parentActivityName=".app.ListarPalavrasActivity"/>
         <activity android:name=".app.AdicionarTemaActivity" />
         <activity android:name=".app.AboutActivity" />
         <activity android:name=".app.GameWinActivity" />

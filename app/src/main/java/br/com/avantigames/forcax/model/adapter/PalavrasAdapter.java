@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -36,9 +37,7 @@ public class PalavrasAdapter extends RecyclerView.Adapter<PalavrasAdapter.Palavr
     @Override
     public PalavraViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(context);
-
         View linha = inflater.inflate(R.layout.activity_item_palavra_view_holder, parent, false);
-
         return new PalavrasAdapter.PalavraViewHolder(linha) ;
     }
 
@@ -47,23 +46,25 @@ public class PalavrasAdapter extends RecyclerView.Adapter<PalavrasAdapter.Palavr
         PalavraFrase palavraFrase = palavraFrasesList.get(position);
         holder.dicaText.setText(palavraFrase.getDica());
         holder.palavraText.setText(palavraFrase.getDescricao());
+        holder.temaText.setText(palavraFrase.getTemaToOne().getTarget().getDescricao());
 
-        holder.itemView.setOnLongClickListener((View view) ->{
-            PopupMenu popup = new PopupMenu(context,view);
-            popup.getMenuInflater().inflate(R.menu.delete,popup.getMenu());
-            popup.setOnMenuItemClickListener((MenuItem ->{
+        holder.itemView.setOnClickListener((View view) ->{
+            PopupMenu popupMenu = new PopupMenu(context,view);
+            popupMenu.getMenuInflater().inflate(R.menu.delete,popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener((MenuItem ->{
                 if(MenuItem.getItemId() == R.id.delete_palavra){
                     palavraFraseBox.remove(palavraFrase.id);
-                    notifyDataSetChanged();
+                    palavraFrasesList.remove(palavraFrase);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, getItemCount());
                 }
                 return false;
             }));
-            popup.show();
-            return true;
-
+            popupMenu.show();
         });
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -71,11 +72,13 @@ public class PalavrasAdapter extends RecyclerView.Adapter<PalavrasAdapter.Palavr
     }
 
     public class PalavraViewHolder extends RecyclerView.ViewHolder{
-        TextView palavraText, dicaText;
+        TextView palavraText, dicaText, temaText;
         public PalavraViewHolder(View itemView) {
             super(itemView);
             palavraText = itemView.findViewById(R.id.palavra_frase_show);
             dicaText = itemView.findViewById(R.id.dica_show);
+            temaText = itemView.findViewById(R.id.tema_show);
         }
     }
+
 }
